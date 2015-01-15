@@ -1,0 +1,53 @@
+<form name="addNewSaleForm" novalidate>
+
+	<div class="modal-header">
+		<h3>Sales</h3>
+	</div>
+	<div class="modal-body customer-item">
+
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+		<table>
+			<tr>
+				<th>Customer:</th>
+				<td>
+					<input type="text" class="sales-select-customers" ui-select2="customersSelectOptions" ng-model="sale.customer" required/>
+				</td>
+				<td>
+					<button class="btn btn-success" ng-click="newLine()">Add Line</button>
+				</td>
+			</tr>
+		</table>
+
+		<hr class="sales-separator" />
+
+		<table class="wider">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th class="cell-center">Quantity</th>
+					<th class="cell-center">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="line in sale.lines">
+					<td>{{line.product.description}}</td>
+					<td class="cell-center">{{line.quantity}}</td>
+					<td class="cell-center">{{line.price | number:2}}</td>
+					<td class="cell-center">
+						<button type="button" class="btn btn-default" title="View" ng-click="removeLine($index)">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="addNewSaleForm.$invalid">Save</button>
+		<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+	</div>
+
+</form>

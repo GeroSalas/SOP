@@ -1,0 +1,76 @@
+<div class="col-md-12" ng-controller="SalesListController">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="page-header">
+				<h2 id="container">SALES ORDERS</h2>
+			</div>
+		</div>
+	</div>
+
+	
+	<div>
+		
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						#
+					</th>
+					<th>
+						Sales Date
+					</th>
+					<th>
+						Customer
+					</th>
+					<th class="cell-center">
+						Amount
+					</th>
+					<th class="cell-center">
+						State
+					</th>
+					<th>
+						<button type="submit" class="btn btn-success" ng-click="new()">New Sales Order</button><br/><br/>
+						Actions
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat = "sale in sales">
+					<td>{{sale._id}}</td>
+					<td>{{sale.created | date: 'dd/MM/yyyy'}}</td>
+					<td>{{sale.customer.name}}</td>
+					<td class="cell-center">{{sale.amount | number:2}}</td>
+					<td class="cell-center"><span class="label" ng-class="getStatusClass(sale)">{{sale.state}}<span></td>
+					<td>
+						<div class="button-actions">
+							<button type="button" class="btn btn-default" title="View" ng-click="view(sale)">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</button>
+							<button type="button" class="btn btn-default" title="Edit" ng-click="edit(sale)">
+								<span class="glyphicon glyphicon-edit"></span>
+							</button>
+							<button type="button" class="btn btn-default" title="Remove" ng-click="delete(sale)">
+								<span class="glyphicon glyphicon-remove-circle"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+
+
+	<pagination items-per-page="itemsPerPage" total-items="sales.count" page="currentPage" on-select-page="selectPage(page)"></pagination>
+
+	<br/>
+	# Sales: {{sales.count}}<br/>
+
+
+  
+</div>

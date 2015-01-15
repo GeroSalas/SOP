@@ -1,0 +1,26 @@
+<div class="modal-header">
+	<h3>Customer</h3>
+</div>
+<div class="modal-body customer-item">
+	<table>
+		<tr>
+			<th>Name:</th>
+			<td>{{customer.name}}</td>
+			</tr>
+		<tr>
+			<th>Address:</th>
+			<td>{{customer.address}}</td>
+		</tr>
+		<tr>
+			<th>State:</th>
+			<td>{{customer.state}}</td>
+		</tr>
+		<tr>
+			<th>Country:</th>
+			<td>{{customer.country}}</td>
+		</tr>
+	</table>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

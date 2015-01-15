@@ -1,0 +1,30 @@
+<form name="addNewLineForm" ng-submit="save(addNewLineForm.$valid)" novalidate>
+
+	<div class="modal-header">
+		<h3>Add Line</h3>
+	</div>
+	<div class="modal-body customer-item">
+
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+		<table>
+			<tr>
+				<th>Product:</th>
+				<td><input type="text" class="sales-select-products" ui-select2="productsSelectOptions" ng-model="line.product" required/></td>
+			</tr>
+			<tr>
+				<th>Price:</th>
+				<td><input type="number" class="form-control" ng-model="line.price" min="0" required/></td>
+			</tr>
+			<tr>
+				<th>Quantity:</th>
+				<td><input type="number" class="form-control" ng-model="line.quantity" min="1" required/></td>
+			</tr>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary" ng-disabled="addNewLineForm.$invalid">Save</button>
+		<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+	</div>
+
+</form>
